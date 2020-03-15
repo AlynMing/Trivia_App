@@ -1,29 +1,24 @@
 ## Trivia_App
 
-📝 `NOTE:` Paste the README templates for each subsequent lab here at the top, (i.e. lab 2, 3, 4). This will show a history of your development process including which users tories you completed and how your app looked and functioned at each step.
-
-## Lab 1
+## Lab 3
 
 ### App Description
-The Goal was to create a simple flashcard that would show us the answer to question once clicked
+`Trivia delete and next card functionality added
 
 ### App Walk-though
-![](Week2.gif)
+
+![](Week5.gif)
 
 ## Required
-- [x ] Create New Project in Android Studio
-- [ x] Add a view for the front side of the flashcard to display the question
-- [ x] Add a view for the back side of the flashcard to display the answer
-- [ x] Build in logic to show the answer side when the card is tapped
-- [ x] Push code to GitHu
-## Optional
-- [ ] toggle the flashcard between the question side and the answer side
-- [ ] Style the question and answer side of the card to better distinguish between the two sides
-- [ ] Add selectable multiple choice answers beneath the card
-   - [ ] Change the background color of the multiple choice answers when clicked to indicate whether the question waanswered correctly
-- [ ] Further customize and style the card
+- [ X] User can create a card and still see their created card when the app is relaunched.
+- [ x] User can create muliple cards and browse through all created cards
 
-📝 `NOTE` Paste this template at the top of your existing `README.md` file from the last lab.
+## Optional
+- [ x] User can delete a card and no longer see it in their deck anymore
+- [ ] Flashcards are shown in random order instead of the order they were created in
+- [ ] User can edit a card and see the edit saved when they browse through their deck of cards
+- [ ] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
 
 ## Lab 2
 
@@ -45,3 +40,31 @@ The Goal was to create a simple flashcard that would show us the answer to quest
 - [ ] A notification is shown if the card was created successfully
 - [ ] User can also enter multiple choice answers when creating a card
 - [ ] App is further styled and customized!
+
+## Lab 1
+
+### App Description
+The Goal was to create a simple flashcard that would show us the answer to question once clicked
+
+### App Walk-though
+![](Week2.gif)
+
+## Required
+- [x ] Create New Project in Android Studio
+- [ x] Add a view for the front side of the flashcard to display the question
+- [ x] Add a view for the back side of the flashcard to display the answer
+- [ x] Build in logic to show the answer side when the card is tapped
+- [ x] Push code to GitHu
+## Optional
+- [ x] toggle the flashcard between the question side and the answer side
+- [ ] Style the question and answer side of the card to better distinguish between the two sides
+- [ ] Add selectable multiple choice answers beneath the card
+   - [ ] Change the background color of the multiple choice answers when clicked to indicate whether the question waanswered correctly
+- [ ] Further customize and style the card
+
+📝 `NOTE` Paste this template at the top of your existing `README.md` file from the last lab.
+
+
+
+
+
