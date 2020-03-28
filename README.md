@@ -5,7 +5,7 @@
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+![](Week7.gif)
 
 ## Required
 - [ X] User sees a transition animation when going from the main screen to the add card screen.
