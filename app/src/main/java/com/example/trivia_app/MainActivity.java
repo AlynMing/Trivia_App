@@ -1,19 +1,25 @@
 package com.example.trivia_app;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
@@ -46,11 +52,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.flashcard_question1).setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 // Do something here
-                findViewById(R.id.flashcard_answer1).setVisibility(View.VISIBLE);
+                //findViewById(R.id.flashcard_answer1).setVisibility(View.VISIBLE);
+                //findViewById(R.id.flashcard_question1).setVisibility(View.INVISIBLE);
+
+                View answerSideView = findViewById(R.id.flashcard_answer1);
+
+                // get the center for the clipping circle
+                int cx = answerSideView.getWidth() / 2;
+                int cy = answerSideView.getHeight() / 2;
+
+                // get the final radius for the clipping circle
+                float finalRadius = (float) Math.hypot(cx, cy);
+
+                // create the animator for this view (the start radius is zero)
+                Animator anim = ViewAnimationUtils.createCircularReveal(answerSideView, cx, cy, 0f, finalRadius);
+
+                // hide the question and show the answer to prepare for playing the animation!
+                //questionSideView.setVisibility(View.INVISIBLE);
                 findViewById(R.id.flashcard_question1).setVisibility(View.INVISIBLE);
+                answerSideView.setVisibility(View.VISIBLE);
+
+                anim.setDuration(3000);
+                anim.start();
 
             }
         });
@@ -70,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, addCardActivity.class);
                 MainActivity.this.startActivityForResult(intent,100);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
             }
         });
 
@@ -78,6 +107,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentCardDisplayedIndex++;
+
+                final Animation leftOutAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.left_out);
+                final Animation rightInAnim = AnimationUtils.loadAnimation(v.getContext(), R.anim.right_in);
+
+                findViewById(R.id.flashcard_question1).startAnimation(leftOutAnim);
+
+                leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // this method is called when the animation first starts
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // this method is called when the animation is finished playing
+                        findViewById(R.id.nextCardButton).startAnimation(rightInAnim);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // we don't need to worry about this method
+                    }
+
+                });
                 if (allFlashcards != null && allFlashcards.size() > 0) {
                     if(allFlashcards.size() == 1){
                         Log.d("State- size 1:-","One card in State. One Flash Cards identified. ");
